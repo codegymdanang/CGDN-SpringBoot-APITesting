@@ -10,6 +10,8 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import static io.restassured.RestAssured.given;
+
 @RunWith(SpringRunner.class)
 public class LoginThoNailsTestCase {
 
@@ -22,10 +24,11 @@ public class LoginThoNailsTestCase {
         loginCredentials.addProperty("password","tuyen123123");
         loginCredentials.addProperty("role","manicurist");
         RestAssured.baseURI = API_ROOT;
-        RequestSpecification httpRequest = RestAssured.given();
+        RequestSpecification httpRequest = given();
         httpRequest.header("Content-type","application/json");
         httpRequest.body(loginCredentials.toString());
         Response response = httpRequest.post("/auth/login");
+        System.out.println(response.getBody().prettyPeek());
         Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
     }
 }
