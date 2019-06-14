@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import static io.restassured.RestAssured.given;
 
 @RunWith(SpringRunner.class)
-public class SearchJobTestCase {
+public class SearchJobThoNailTestCase {
     private static final String API_ROOT = "https://api.canthonailsviet.com/";
     @Ignore
     @Test

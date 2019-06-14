@@ -15,7 +15,7 @@ import static io.restassured.RestAssured.given;
 @RunWith(SpringRunner.class)
 public class LoginThoNailsTestCase {
 
-    private static final String API_ROOT = "https://api.canthonailsviet.com/";
+    private static final String API_ROOT = "https://api.canthonailsviet.com";
 
     @Test
     public void WhenLoginOkOrNot() {
@@ -28,6 +28,7 @@ public class LoginThoNailsTestCase {
         httpRequest.header("Content-type","application/json");
         httpRequest.body(loginCredentials.toString());
         Response response = httpRequest.post("/auth/login");
+        response.getBody().toString();
         System.out.println(response.getBody().prettyPeek());
         Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
     }
