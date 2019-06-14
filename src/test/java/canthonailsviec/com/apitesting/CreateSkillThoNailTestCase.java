@@ -11,8 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
-
-
 import static io.restassured.RestAssured.given;
 
 @RunWith(SpringRunner.class)
@@ -22,7 +20,7 @@ public class CreateSkillThoNailTestCase {
     public void startTest(){
         token = getTokenWhenLogin();
     }
-    private static final String API_ROOT = "https://api.canthonailsviet.com/";
+    public static final String API_ROOT = "https://api.canthonailsviet.com/";
     public String getTokenWhenLogin(){
         JsonObject loginCredentials = new JsonObject();
         loginCredentials.addProperty("email","lenguyenthanhtuyen97@gmail.com");
