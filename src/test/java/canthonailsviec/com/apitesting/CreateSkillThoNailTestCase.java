@@ -23,8 +23,8 @@ public class CreateSkillThoNailTestCase {
     public static final String API_ROOT = "https://api.canthonailsviet.com/";
     public String getTokenWhenLogin(){
         JsonObject loginCredentials = new JsonObject();
-        loginCredentials.addProperty("email","lenguyenthanhtuyen97@gmail.com");
-        loginCredentials.addProperty("password","tuyen123123");
+        loginCredentials.addProperty("email","lenguyenthanhtuyen97+28@gmail.com");
+        loginCredentials.addProperty("password","tinhtuyen2501");
         loginCredentials.addProperty("role","manicurist");
         RestAssured.baseURI = API_ROOT;
         RequestSpecification httpRequest = given();
