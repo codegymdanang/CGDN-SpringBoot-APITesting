@@ -23,7 +23,7 @@ public class CreateCVTestCase {
    }
    public String getTokenWhenLogin(){
       JsonObject loginCredentials = new JsonObject();
-      loginCredentials.addProperty("email","lenguyenthanhtuyen97@gmail.com");
+      loginCredentials.addProperty("email","lenguyenthanhtuyen97+23@gmail.com");
       loginCredentials.addProperty("password","tinhtuyen2501");
       loginCredentials.addProperty("role","manicurist");
       RestAssured.baseURI = API_ROOT;
@@ -35,6 +35,29 @@ public class CreateCVTestCase {
       String token = jsonPathEvaluator.get("token");
       System.out.println(token);
       return token;
+   }
+   @Test
+   public void whenAddInformationPersionalOkOrNot(){
+      JsonObject addProfileProp = new JsonObject();
+      addProfileProp.addProperty("city","Đà Nẵng");
+      addProfileProp.addProperty("country","viet nam");
+      addProfileProp.addProperty("currentAddress","Đống Đa");
+      addProfileProp.addProperty("dateOfBirth", "25-01-1997");
+      addProfileProp.addProperty("displayEmail","lenguyenthanhtuyen97+28@gmail.com");
+      addProfileProp.addProperty("firstName","tuyen");
+      addProfileProp.addProperty("gender","MALE");
+      addProfileProp.addProperty("lastName","thanh");
+      addProfileProp.addProperty("maritalStatus","SINGLE");
+      addProfileProp.addProperty("phoneNumber","077645298");
+      addProfileProp.addProperty("state","TX");
+      addProfileProp.addProperty("jobTitle","Tho cham soc da");
+      RestAssured.baseURI = API_ROOT;
+      RequestSpecification request = given();
+      request.header("Content-type","application/json");
+      request.header("Authorization","Bearer "+token);
+      request.body(addProfileProp.toString());
+      Response response = request.put("/profile/me/personal-info");
+      response.getBody().prettyPrint();
    }
    @Test
    public void whenAddSkillOkOrNot(){

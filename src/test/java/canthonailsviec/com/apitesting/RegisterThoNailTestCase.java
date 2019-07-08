@@ -18,7 +18,7 @@ public class RegisterThoNailTestCase {
     @Test
     public void WhenRegisterOkOrNot(){
         JsonObject registerCrendentials = new JsonObject();
-        registerCrendentials.addProperty("email","lenguyenthanhtuyen97+28@gmail.com");
+        registerCrendentials.addProperty("email","lenguyenthanhtuyen97+29@gmail.com");
         registerCrendentials.addProperty("firstName","tuyen");
         registerCrendentials.addProperty("lastName","thanh");
         registerCrendentials.addProperty("password","tinhtuyen2501");
