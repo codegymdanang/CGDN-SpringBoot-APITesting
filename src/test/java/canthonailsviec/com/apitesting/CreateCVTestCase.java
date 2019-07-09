@@ -6,12 +6,15 @@ import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
+import org.apache.http.HttpStatus;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.requestSpecification;
 
 @RunWith(SpringRunner.class)
 public class CreateCVTestCase {
@@ -23,7 +26,7 @@ public class CreateCVTestCase {
    }
    public String getTokenWhenLogin(){
       JsonObject loginCredentials = new JsonObject();
-      loginCredentials.addProperty("email","lenguyenthanhtuyen97+23@gmail.com");
+      loginCredentials.addProperty("email","lenguyenthanhtuyen97@gmail.com");
       loginCredentials.addProperty("password","tinhtuyen2501");
       loginCredentials.addProperty("role","manicurist");
       RestAssured.baseURI = API_ROOT;
@@ -58,6 +61,7 @@ public class CreateCVTestCase {
       request.body(addProfileProp.toString());
       Response response = request.put("/profile/me/personal-info");
       response.getBody().prettyPrint();
+      Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
    }
    @Test
    public void whenAddSkillOkOrNot(){
@@ -78,6 +82,41 @@ public class CreateCVTestCase {
       request.body(addSkillProp.toString());
       Response response = request.put("/profile/me/skills");
       response.getBody().prettyPrint();
+      Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
    }
+   @Test
+   public void whenAddExperienceFromYearToYear(){
+      JsonObject experienceProp = new JsonObject();
+      experienceProp.addProperty("additionalInformation","concho");
+      experienceProp.addProperty("company","concho");
+      experienceProp.addProperty("fromMonth","01-1973");
+      experienceProp.addProperty("jobTitle","thợ sơn móng tay");
+      experienceProp.addProperty("toMonth","04-1975");
+      RestAssured.baseURI = API_ROOT;
+      RequestSpecification request = given();
+      request.header("Content-type","application/json");
+      request.header("Authorization","Bearer "+token);
+      request.body(experienceProp.toString());
+      Response response = request.post("/profile/me/working-experiences");
+      response.getBody().prettyPrint();
+      Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
+   }
+   @Test
+   public void whenAddExperienceFromYearToNowOKorNot(){
+      JsonObject experienceProp = new JsonObject();
+      experienceProp.addProperty("additionalInformation","concho");
+      experienceProp.addProperty("company","concho");
+      experienceProp.addProperty("fromMonth","01-1973");
+      experienceProp.addProperty("jobTitle","thợ sơn móng tay");
+      experienceProp.addProperty("toMonth","NOW");
+      RestAssured.baseURI = API_ROOT;
+      RequestSpecification request = given();
+      request.header("Content-type","application/json");
+      request.header("Authorization","Bearer "+token);
+      request.body(experienceProp.toString());
+      Response response = request.post("/profile/me/working-experiences");
+      response.getBody().prettyPrint();
+      Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
 
+   }
 }
