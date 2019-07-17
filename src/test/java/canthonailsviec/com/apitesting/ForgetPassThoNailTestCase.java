@@ -40,7 +40,6 @@ public class ForgetPassThoNailTestCase {
         httpRequest.header("Content-type","application/json");
         httpRequest.body(prop.toString());
         Response response = httpRequest.post("auth/reset-password?token="+token);
-//      Response response = httpRequest.post("auth/reset-password?token=eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MywiZW1haWwiOiJsZW5ndXllbnRoYW5odHV5ZW45N0BnbWFpbC5jb20iLCJ0b2tlbl90eXBlIjoiUkVTRVRfUEFTU1dPUkRfVE9LRU4iLCJyb2xlIjoibWFuaWN1cmlzdCIsImp3dGlkIjoiYXV0aF90b2tlbl9pZDpfLVMxckx1S2giLCJpYXQiOjE1NjA3ODY3NDEsImV4cCI6MTU2MDc5MDM0MX0.ejTp334UDEB6zpWEgmoZiVFRgw_1nMTEgSFV-tlu5vpkPRiEI4mF4e97rIbvSqX-xHz8U-C5zUpD3648ZMEfon13JRTH89ZWPsFiZRd1EFOERtshA5Fh9LgkcyILN9XZf-JcgAzIowH9nmIHitjVf4YH5qFmkGaohgLBlaFaSW8B9qb11OUbVBOsTEBx77LOtm-TrGu96peudV0MOUCIg-RMm1amIT06UMZ9_vCkNmopU5B6w1oJdRw6LbQCAXc9vEltKCDuXxmYiuoI3Y9aVXR1ElNP5QmiNlWeUuBx6m26YGiQjcvMP2FJfaP8kke8LpRCrkKZdlmHM6s9e8glgA");
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
     }
