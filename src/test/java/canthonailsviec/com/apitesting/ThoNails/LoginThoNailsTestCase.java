@@ -1,4 +1,4 @@
-package canthonailsviec.com.apitesting;
+package canthonailsviec.com.apitesting.ThoNails;
 
 import com.google.gson.JsonObject;
 import io.restassured.RestAssured;
@@ -22,7 +22,7 @@ public class LoginThoNailsTestCase {
     public void WhenLoginOkOrNot() {
         JsonObject loginCredentials = new JsonObject();
         loginCredentials.addProperty("email","lenguyenthanhtuyen97@gmail.com");
-        loginCredentials.addProperty("password","tuyen123123");
+        loginCredentials.addProperty("password","tinhtuyen2501");
         loginCredentials.addProperty("role","manicurist");
         RestAssured.baseURI = API_ROOT;
         RequestSpecification httpRequest = given();

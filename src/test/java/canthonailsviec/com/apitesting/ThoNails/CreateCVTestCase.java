@@ -1,4 +1,4 @@
-package canthonailsviec.com.apitesting;
+package canthonailsviec.com.apitesting.ThoNails;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;

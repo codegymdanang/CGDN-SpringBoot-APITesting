@@ -1,4 +1,4 @@
-package canthonailsviec.com.apitesting;
+package canthonailsviec.com.apitesting.ThoNails;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
