@@ -15,11 +15,12 @@ public class LoginTestCase extends TestBase {
     @Test
     public void ShouldLoginOkOrNot() {
         JsonObject loginProps = new JsonObject();
-        loginProps.addProperty("email", "tuyen.le@smartdev.vn");
+        loginProps.addProperty("email", "lenguyenthanhtuyen97+3@gmail.com");
         loginProps.addProperty("password","tuyen123123");
         loginProps.addProperty("role", "company");
         REQUEST.body(loginProps.toString());
         Response response = REQUEST.post("/auth/login");
+        response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_OK, response.getStatusCode());
     }
 }
