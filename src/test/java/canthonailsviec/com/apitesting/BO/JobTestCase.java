@@ -92,4 +92,12 @@ public class JobTestCase extends TestBase {
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_BAD_REQUEST,response.getStatusCode());
     }
+    //BO approve job is rejected
+    @Test
+    public void WhenBOApproveJobRejectOkOrNot(){
+        REQUEST.header("Authorization","Bearer "+getTokenBO());
+        Response response = REQUEST.put("/jobs/"+jobIdReject+"/approve");
+        response.getBody().prettyPrint();
+        Assert.assertEquals(HttpStatus.SC_BAD_REQUEST,response.getStatusCode());
+    }
 }
