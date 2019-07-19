@@ -14,6 +14,14 @@ public class HotJobTestCase extends TestBase {
     Integer idHotjobRejected = 14;
     Integer idHotjobPending = 14;
 
+    //BO approve hot job when job is active
+    @Test
+    public void WhenApproveHotjobOkOrNot(){
+        REQUEST.header("Authorization","Bearer "+getTokenBO());
+        Response response = REQUEST.put("/hotjobs/"+idHotjobRejected+"/approve");
+        response.getBody().prettyPrint();
+        Assert.assertEquals(HttpStatus.SC_BAD_REQUEST,response.getStatusCode());
+    }
     //BO Reject hot job
     @Test
     public void WhenRejectHotjobOkOrNot(){
@@ -25,6 +33,7 @@ public class HotJobTestCase extends TestBase {
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
     }
+
     //BO approve hot job is rejected
     @Test
     public void WhenApproveHotjobRejectedOkOrNot(){

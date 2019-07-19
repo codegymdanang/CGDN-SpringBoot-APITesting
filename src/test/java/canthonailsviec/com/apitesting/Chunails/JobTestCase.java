@@ -17,11 +17,12 @@ public class JobTestCase extends TestBase {
     Integer idJobReject = 288;
     Integer idJobPending = 311;
     Integer idJobActive = 310;
+    // Chu nail Post job
     @Test
     public void CreateJobOKorNot(){
         JsonObject jobProps = new JsonObject();
         JsonArray skillsAr = new JsonArray();
-        jobProps.addProperty("title","tuyển cún con");
+        jobProps.addProperty("title","em cần anh trai");
         jobProps.addProperty("description","Chúng tôi đang cần tuyển 1 thợ bột có kinh nghiệm > 2 năm");
         skillsAr.add(1);
         skillsAr.add(3);

@@ -13,16 +13,17 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class JobTestCase extends TestBase {
     Integer jobIdReject = 312;
-    Integer jobIdPending = 313;
+    Integer jobIdPending = 315;
     Integer jobIdActiving = 306;
-    //Job is rejected
+
+    //BO reject job
     @Test
     public void WhenRejectJobOkOrNot(){
         JsonObject rejectProps = new JsonObject();
         rejectProps.addProperty("rejectedReason","Not good");
         REQUEST.header("Authorization","Bearer "+getTokenBO());
         REQUEST.body(rejectProps.toString());
-        Response response = REQUEST.put("/jobs/"+jobIdReject+"/reject");
+        Response response = REQUEST.put("/jobs/"+jobIdPending+"/reject");
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
     }
@@ -99,5 +100,13 @@ public class JobTestCase extends TestBase {
         Response response = REQUEST.put("/jobs/"+jobIdReject+"/approve");
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_BAD_REQUEST,response.getStatusCode());
+    }
+    //BO approve job is pending
+    @Test
+    public void WhenBOApproveJobPendingOkOrNot(){
+        REQUEST.header("Authorization","Bearer "+getTokenBO());
+        Response response = REQUEST.put("/jobs/"+jobIdPending+"/approve");
+        response.getBody().prettyPrint();
+        Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
     }
 }

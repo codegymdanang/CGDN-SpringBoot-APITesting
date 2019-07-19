@@ -11,11 +11,13 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 public class HotJobTestCase extends TestBase {
+    Integer idJobActive = 311;
+    Integer idJobPending = 280;
     @Test
     public void WhenCreateHotJobOkOrNot(){
         JsonObject createHotJobProps = new JsonObject();
         REQUEST.header("Authorization","Bearer "+getToken());
-        createHotJobProps.addProperty("jobId",309);
+        createHotJobProps.addProperty("jobId",idJobActive);
         REQUEST.body(createHotJobProps.toString());
         Response response = REQUEST.post("/hotjobs");
         response.getBody().prettyPrint();
@@ -26,7 +28,7 @@ public class HotJobTestCase extends TestBase {
     public void CreateHotJobWhenJobPendingOkOrNot(){
         JsonObject createHotJobProps = new JsonObject();
         REQUEST.header("Authorization","Bearer "+getToken());
-        createHotJobProps.addProperty("jobId",280);
+        createHotJobProps.addProperty("jobId",idJobPending);
         REQUEST.body(createHotJobProps.toString());
         Response response = REQUEST.post("/hotjobs");
         response.getBody().prettyPrint();
