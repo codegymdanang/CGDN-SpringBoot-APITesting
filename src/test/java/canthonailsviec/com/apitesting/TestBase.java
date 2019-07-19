@@ -26,9 +26,9 @@ public class TestBase {
     }
     public String getTokenBO(){
         JsonObject loginProps = new JsonObject();
-        loginProps.addProperty("email", "tuyen.le@smartdev.vn");
-        loginProps.addProperty("password","tuyen123123");
-        loginProps.addProperty("role", "company");
+        loginProps.addProperty("email", "canthonailsviet@gmail.com");
+        loginProps.addProperty("password","Abc@12345");
+        loginProps.addProperty("role", "admin");
         REQUEST.body(loginProps.toString());
         Response response = REQUEST.post("/auth/login");
         JsonPath jsonPathEvaluator = response.jsonPath();

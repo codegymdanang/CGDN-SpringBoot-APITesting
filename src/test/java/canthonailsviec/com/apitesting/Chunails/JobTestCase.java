@@ -21,7 +21,7 @@ public class JobTestCase extends TestBase {
     public void CreateJobOKorNot(){
         JsonObject jobProps = new JsonObject();
         JsonArray skillsAr = new JsonArray();
-        jobProps.addProperty("title","tuyển cún ");
+        jobProps.addProperty("title","tuyển cún con");
         jobProps.addProperty("description","Chúng tôi đang cần tuyển 1 thợ bột có kinh nghiệm > 2 năm");
         skillsAr.add(1);
         skillsAr.add(3);
