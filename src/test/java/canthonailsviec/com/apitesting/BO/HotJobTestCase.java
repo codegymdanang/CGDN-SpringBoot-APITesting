@@ -12,7 +12,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class HotJobTestCase extends TestBase {
     Integer idHotjobRejected = 14;
-    Integer idHotjobPending = 14;
+    Integer idHotjobPending = 15;
 
     //BO approve hot job when job is active
     @Test

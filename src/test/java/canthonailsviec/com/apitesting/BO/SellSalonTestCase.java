@@ -34,4 +34,34 @@ public class SellSalonTestCase extends TestBase {
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_BAD_REQUEST,response.getStatusCode());
     }
+    //BO edit sell salon is pending
+    @Test
+    public void WhenEditSellSalonPendingOkOrNot(){
+        JsonObject props = new JsonObject();
+        props.addProperty("title","chu nail edit sell salon dang pending");
+        props.addProperty("description","Chúng tôi đang cần bán tiệm");
+        props.addProperty("price",11000);
+        props.addProperty("city","Houston");
+        props.addProperty("state","TX");
+        REQUEST.header("Authorization","Bearer "+getTokenBO());
+        REQUEST.body(props.toString());
+        Response response = REQUEST.put("/selling-shop-posts/"+idSalonPending);
+        response.getBody().prettyPrint();
+        Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
+    }
+    //BO edit sell salon is reject
+    @Test
+    public void WhenEditSellSalonRejectOkOrNot(){
+        JsonObject props = new JsonObject();
+        props.addProperty("title","chu nail edit sell salon dang reject");
+        props.addProperty("description","Chúng tôi đang cần bán tiệm gaaos");
+        props.addProperty("price",11000);
+        props.addProperty("city","Houston");
+        props.addProperty("state","TX");
+        REQUEST.header("Authorization","Bearer "+getTokenBO());
+        REQUEST.body(props.toString());
+        Response response = REQUEST.put("/selling-shop-posts/"+idSalonReject);
+        response.getBody().prettyPrint();
+        Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
+    }
 }
