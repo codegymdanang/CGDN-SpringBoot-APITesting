@@ -13,8 +13,9 @@ import org.springframework.test.context.junit4.SpringRunner;
 public class SellSalonTestCase extends TestBase {
     //BO approve sell salon is rejected
     Integer idSalonReject = 48;
-    Integer idSalonPending = 48;
+    Integer idSalonPending = 44;
     Integer idSalonActive = 44;
+
     //BO reject sell salon
     @Test
     public void WhenRejectSellSalonOkOrNot(){
@@ -78,5 +79,16 @@ public class SellSalonTestCase extends TestBase {
         Response response = REQUEST.put("/selling-shop-posts/"+idSalonActive);
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_BAD_REQUEST,response.getStatusCode());
+    }
+    //BO deactive sell salon
+    @Test
+    public void WhenDeactiveSellSalonOkOrNot(){
+        JsonObject props = new JsonObject();
+        props.addProperty("deactivatedReason","người ta không thích mình thật lòng nên ngừoi ta mới không thật lòng cho một mối quan hệ hoặc là mình chưa đủ để ngừoi ta cố gắng, vậy nên mình nên dứt khoát");
+        REQUEST.header("Authorization","Bearer "+getTokenBO());
+        REQUEST.body(props.toString());
+        Response response = REQUEST.put("/selling-shop-posts/"+idSalonActive+"/deactivate");
+        response.getBody().prettyPrint();
+        Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
     }
 }

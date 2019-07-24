@@ -13,7 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class JobTestCase extends TestBase {
     Integer jobIdReject = 312;
-    Integer jobIdPending = 312;
+    Integer jobIdPending = 316;
     Integer jobIdActiving = 310;
 
     //BO reject job

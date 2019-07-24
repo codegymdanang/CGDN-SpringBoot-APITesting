@@ -11,7 +11,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
 public class HotJobTestCase extends TestBase {
-    Integer idJobActive = 311;
+    Integer idJobActive = 316;
     Integer idJobPending = 280;
     @Test
     public void WhenCreateHotJobOkOrNot(){

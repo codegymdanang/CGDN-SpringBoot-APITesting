@@ -12,7 +12,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class HotJobTestCase extends TestBase {
     Integer idHotjobRejected = 14;
-    Integer idHotjobPending = 15;
+    Integer idHotjobPending = 16;
+    Integer idHotJobActive = 12;
 
     //BO approve hot job when job is active
     @Test
@@ -42,6 +43,16 @@ public class HotJobTestCase extends TestBase {
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_BAD_REQUEST,response.getStatusCode());
     }
-
+    //BO Deactive hot job
+    @Test
+    public void WhenBoDeactiveHotJobOkOrNot(){
+        JsonObject props = new JsonObject();
+        props.addProperty("deactivatedReason","Deactice hot job");
+        REQUEST.header("Authorization","Bearer "+getTokenBO());
+        REQUEST.body(props.toString());
+        Response response = REQUEST.put("/hotjobs/"+idHotJobActive+"/deactivate");
+        response.getBody().prettyPrint();
+        Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
+    }
 
 }
