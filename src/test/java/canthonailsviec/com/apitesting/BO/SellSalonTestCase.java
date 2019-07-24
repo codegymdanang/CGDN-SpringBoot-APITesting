@@ -12,14 +12,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class SellSalonTestCase extends TestBase {
     //BO approve sell salon is rejected
-    Integer idSalonReject = 44;
-    Integer idSalonPending = 44;
-    Integer idSalonActive = 46;
+    Integer idSalonReject = 48;
+    Integer idSalonPending = 48;
+    Integer idSalonActive = 44;
     //BO reject sell salon
     @Test
     public void WhenRejectSellSalonOkOrNot(){
         JsonObject props = new JsonObject();
-        props.addProperty("rejectedReason",  "Not good");
+        props.addProperty("rejectedReason",  "can cung cap thong tin chinh sac!");
         REQUEST.header("Authorization","Bearer "+getTokenBO());
         REQUEST.body(props.toString());
         Response response = REQUEST.put("selling-shop-posts/"+idSalonPending+"/reject");
@@ -38,9 +38,9 @@ public class SellSalonTestCase extends TestBase {
     @Test
     public void WhenEditSellSalonPendingOkOrNot(){
         JsonObject props = new JsonObject();
-        props.addProperty("title","chu nail edit sell salon dang pending");
+        props.addProperty("title","chu nail edit sell salon dang pending thanh cong");
         props.addProperty("description","Chúng tôi đang cần bán tiệm");
-        props.addProperty("price",11000);
+        props.addProperty("price",20000);
         props.addProperty("city","Houston");
         props.addProperty("state","TX");
         REQUEST.header("Authorization","Bearer "+getTokenBO());
@@ -55,7 +55,7 @@ public class SellSalonTestCase extends TestBase {
         JsonObject props = new JsonObject();
         props.addProperty("title","chu nail edit sell salon dang reject");
         props.addProperty("description","Chúng tôi đang cần bán tiệm gaaos");
-        props.addProperty("price",11000);
+        props.addProperty("price",1000);
         props.addProperty("city","Houston");
         props.addProperty("state","TX");
         REQUEST.header("Authorization","Bearer "+getTokenBO());
@@ -63,5 +63,20 @@ public class SellSalonTestCase extends TestBase {
         Response response = REQUEST.put("/selling-shop-posts/"+idSalonReject);
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
+    }
+    //BO edit sell salon is activing
+    @Test
+    public void WhenEditSellSalonActiveOkOrNot(){
+        JsonObject props = new JsonObject();
+        props.addProperty("title","chu nail edit sell salon dang reject");
+        props.addProperty("description","Chúng tôi đang cần bán tiệm gaaos");
+        props.addProperty("price",11000);
+        props.addProperty("city","Houston");
+        props.addProperty("state","TX");
+        REQUEST.header("Authorization","Bearer "+getTokenBO());
+        REQUEST.body(props.toString());
+        Response response = REQUEST.put("/selling-shop-posts/"+idSalonActive);
+        response.getBody().prettyPrint();
+        Assert.assertEquals(HttpStatus.SC_BAD_REQUEST,response.getStatusCode());
     }
 }

@@ -13,14 +13,14 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class JobTestCase extends TestBase {
     Integer jobIdReject = 312;
-    Integer jobIdPending = 315;
-    Integer jobIdActiving = 306;
+    Integer jobIdPending = 312;
+    Integer jobIdActiving = 310;
 
     //BO reject job
     @Test
     public void WhenRejectJobOkOrNot(){
         JsonObject rejectProps = new JsonObject();
-        rejectProps.addProperty("rejectedReason","Not good");
+        rejectProps.addProperty("rejectedReason","ly do vi chu tiem nail qua xau");
         REQUEST.header("Authorization","Bearer "+getTokenBO());
         REQUEST.body(rejectProps.toString());
         Response response = REQUEST.put("/jobs/"+jobIdPending+"/reject");
@@ -106,6 +106,17 @@ public class JobTestCase extends TestBase {
     public void WhenBOApproveJobPendingOkOrNot(){
         REQUEST.header("Authorization","Bearer "+getTokenBO());
         Response response = REQUEST.put("/jobs/"+jobIdPending+"/approve");
+        response.getBody().prettyPrint();
+        Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
+    }
+    //BO deactive job
+    @Test
+    public void WhenBODeactiveJobOkOrNot(){
+        JsonObject jsProps = new JsonObject();
+        jsProps.addProperty("deactivatedReason","job khong dung nen deactive");
+        REQUEST.header("Authorization","Bearer "+getTokenBO());
+        REQUEST.body(jsProps.toString());
+        Response response = REQUEST.put("/jobs/"+jobIdActiving+"/deactivate");
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_OK,response.getStatusCode());
     }
