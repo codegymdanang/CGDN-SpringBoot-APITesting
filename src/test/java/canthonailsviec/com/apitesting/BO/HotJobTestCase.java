@@ -12,20 +12,20 @@ import org.springframework.test.context.junit4.SpringRunner;
 @RunWith(SpringRunner.class)
 public class HotJobTestCase extends TestBase {
     Integer idHotjobRejected = 14;
-    Integer idHotjobPending = 16;
-    Integer idHotJobActive = 12;
+    Integer idHotjobPending = 19;
+    Integer idHotJobActive = 18;
 
-    //BO approve hot job when job is active
+    //BO approve hot job
     @Test
     public void WhenApproveHotjobOkOrNot(){
         REQUEST.header("Authorization","Bearer "+getTokenBO());
-        Response response = REQUEST.put("/hotjobs/"+idHotjobRejected+"/approve");
+        Response response = REQUEST.put("/hotjobs/"+idHotjobPending+"/approve");
         response.getBody().prettyPrint();
         Assert.assertEquals(HttpStatus.SC_BAD_REQUEST,response.getStatusCode());
     }
     //BO Reject hot job
     @Test
-    public void WhenRejectHotjobOkOrNot(){
+    public void WhenRejectHotjobOjkOrNot(){
         JsonObject props = new JsonObject();
         props.addProperty("rejectedReason","Not good");
         REQUEST.header("Authorization","Bearer "+getTokenBO());
